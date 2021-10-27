@@ -4,22 +4,25 @@
 
 <div class="container">
     <div class="row">
-        <div class="col">
-            <div class="row">
-                <div class="list-group">
-                    <button type="button" onclick="GetItem()" class="list-group-item list-group-item-action">Get Items</button>
-                    <button type="button" onclick="AddItem()" class="list-group-item list-group-item-action">Add Items</button>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="col">
+                <div class="row">
+                    <div class="list-group">
+                        <button type="button" onclick="GetItem()" class="list-group-item list-group-item-action">Get Items</button>
+                        <button type="button" onclick="AddItem()" class="list-group-item list-group-item-action">Add Items</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-9">
-            <code id="result">
+            <div class="col-9">
+                <code id="result">
 
-            </code>
-            <br />
-            <br />
-            <br />
-            <input id="documentName" />
-        </div>
+                </code>
+                <br />
+                <br />
+                <br />
+                <input id="documentName" />
+            </div> 
+        }
     </div>
 </div>

@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Redgate.WebHost.LightingTalk.Data;
 
 namespace Redgate.WebHost.LightingTalk
 {
@@ -35,7 +37,13 @@ namespace Redgate.WebHost.LightingTalk
                 options.AddPolicy("CanAdd", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("CanRead", policy => policy.RequireRole("Admin","ReadOnly"));
             });
-            services.AddSingleton<IItemService, ItemService>();
+            
+            services.AddDbContext<ItemContext>(options =>
+                options.UseSqlServer(@"Server=localhost\prova;Database=Item;Trusted_Connection=True"));
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            
+            services.AddScoped<IItemService, ItemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
