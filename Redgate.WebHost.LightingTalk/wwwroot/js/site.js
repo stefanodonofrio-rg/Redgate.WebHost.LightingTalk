@@ -25,6 +25,7 @@ function GetItem() {
 
 function AddItem() {
     var name = $("#documentName")[0].value;
+    debugger;
     $.ajax({
         type: "Post",
         url: "/api/Items/Add",
