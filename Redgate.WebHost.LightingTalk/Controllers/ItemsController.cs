@@ -28,7 +28,7 @@ namespace Redgate.WebHost.LightingTalk.Controllers
         [HttpPost("Add")]
         public async Task<IActionResult> AddItem([FromBody] string itemName)
         {
-            m_ItemService.AddItem(itemName + "--"+ HttpContext.User.Claims.Single(x => x.Type.Equals(ClaimTypes.Name)).Value);
+            m_ItemService.AddItem(itemName);
             return Ok();
         }
     }
