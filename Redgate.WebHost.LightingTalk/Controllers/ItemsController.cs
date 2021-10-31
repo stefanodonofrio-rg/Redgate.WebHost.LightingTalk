@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Redgate.WebHost.LightingTalk.Service;
 using System.Threading.Tasks;
 

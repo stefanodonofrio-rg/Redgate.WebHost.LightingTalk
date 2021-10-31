@@ -1,4 +1,6 @@
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -6,7 +8,7 @@ using NUnit.Framework;
 
 namespace Redgate.WebHost.LightingTalk.IntegrationTests
 {
-    public class ItemsIntegrationTests
+    public class ItemsTests
     {
         private WebApplicationFactory<Startup> m_WebApplicationFactory;
         
@@ -21,6 +23,14 @@ namespace Redgate.WebHost.LightingTalk.IntegrationTests
         {
             var client = m_WebApplicationFactory.CreateClient();
             var result= await client.GetAsync("api/items");
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Test]
+        public async Task AddItem_ShouldReturnOk()
+        {
+            var client = m_WebApplicationFactory.CreateClient();
+            var result = await client.PostAsync("api/Items/Add", JsonContent.Create("NewItem"));
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
     }
