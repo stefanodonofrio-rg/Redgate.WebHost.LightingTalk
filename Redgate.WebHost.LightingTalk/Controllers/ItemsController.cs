@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Redgate.WebHost.LightingTalk.Service;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Redgate.WebHost.LightingTalk.Controllers
 {
@@ -16,6 +17,7 @@ namespace Redgate.WebHost.LightingTalk.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "CanRead")]
         public async Task<IActionResult> GetItem()
         {
             var items = m_ItemService.GetItem();
@@ -23,6 +25,7 @@ namespace Redgate.WebHost.LightingTalk.Controllers
         }
 
         [HttpPost("Add")]
+        [Authorize(Policy = "CanAdd")]
         public async Task<IActionResult> AddItem([FromBody] string itemName)
         {
             m_ItemService.AddItem(itemName);
