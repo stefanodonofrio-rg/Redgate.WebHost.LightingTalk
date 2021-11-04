@@ -28,7 +28,6 @@ namespace Redgate.WebHost.LightingTalk.IntegrationTests.Utility
                 using var scope = sp.CreateScope();
 
                 var itemContext = scope.ServiceProvider.GetRequiredService<ItemContext>();
-                itemContext.Database.EnsureCreated();
                 try
                 {
                     InMemoryDatabaseHelper.InitializeDb(itemContext);
