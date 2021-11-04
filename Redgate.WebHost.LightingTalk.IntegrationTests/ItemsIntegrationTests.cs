@@ -79,6 +79,11 @@ namespace Redgate.WebHost.LightingTalk.IntegrationTests
             }).CreateClient();
             var result = await client.PostAsync("api/Items/Add", JsonContent.Create(itemValue));
             result.StatusCode.Should().Be(HttpStatusCode.Forbidden);
+            
+            var getResult = await client.GetAsync("api/items");
+
+            (await getResult.Content.ReadFromJsonAsync<IEnumerable<string>>()).Should()
+                .BeEquivalentTo(InMemoryDatabaseHelper.InMemoryItems.Select(x => x.Value));
         }
     }
 }
